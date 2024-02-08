@@ -1,0 +1,25 @@
+body {
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    margin: 0;
+    padding: 30px;
+  }
+  
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+  .form-container {
+    margin: 0 10px;
+  }
+  .form-container:first-child {
+    margin-right: 5px; /* Adjust spacing between forms */
+  }
+  .form-container:last-child {
+    margin-left: 5px; /* Adjust spacing between forms */
+  }
+  .form-container app-emi-calculator-form {
+    width: 100%; /* Ensure forms take up full width */
+  }

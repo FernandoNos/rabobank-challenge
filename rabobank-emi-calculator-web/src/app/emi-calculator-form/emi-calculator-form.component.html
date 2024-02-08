@@ -1,0 +1,52 @@
+<div fxLayout="column" fxLayoutAlign="start" [hidden]="shouldHideForm()">
+  <div style="display: flex;">
+    <form [formGroup]="loanForm" (ngSubmit)="onSubmit()">
+      <p>
+        <mat-form-field appearance="fill">
+          <mat-label>Loan Value</mat-label>
+          <input matInput formControlName="loanValue" placeholder="1" type="number" step="0.5">
+          <mat-error *ngIf="loanForm.get('loanValue')?.hasError('min')"> Min value is 0</mat-error>
+
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field appearance="fill">
+          <mat-label>Yearly interest rate %</mat-label>
+          <input matInput formControlName="yearlyInterest" placeholder="1" type="number" step="0.5">
+          <mat-error *ngIf="loanForm.get('yearlyInterest')?.hasError('min')"> Min value is 0</mat-error>
+          <mat-error *ngIf="loanForm.get('yearlyInterest')?.hasError('max')"> Max value is 100</mat-error>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field appearance="fill">
+          <mat-label>Loan Terms in Years</mat-label>
+          <input matInput formControlName="loanTerms" placeholder="1" type="number" step="0.5">
+          <mat-error *ngIf="loanForm.get('loanTerms')?.hasError('required')">Loan Value is required</mat-error>
+          <mat-error *ngIf="loanForm.get('loanTerms')?.hasError('min')"> Min value is 0</mat-error>
+          <mat-error *ngIf="loanForm.get('loanTerms')?.hasError('max')"> Max value is 30</mat-error>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field appearance="fill">
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email" placeholder="email@email.com" type="email">
+          <mat-error *ngIf="loanForm.get('email')?.hasError('email')">
+            Invalid email
+          </mat-error>
+        </mat-form-field>
+      </p>
+      
+      <div style="margin-left: 3%;">
+        <div [hidden]="shouldHideTotalLabel()">
+          <mat-form-field class="total">
+          <input matInput disabled="true" readonly="true" type="text" [value]="emiResult">
+        </mat-form-field> 
+      </div>
+      </div>
+      <button mat-raised-button color="primary" type="submit">Submit</button>
+    </form>
+  </div>
+</div>
+<div [hidden]="shouldHideSpinner()">
+  <mat-spinner></mat-spinner>
+</div>
